@@ -1,3 +1,4 @@
+
 CREATE DATABASE IS3_maldonado_jose;
 
 CREATE TABLE usuario (
@@ -117,3 +118,14 @@ SELECT usu_nombre, COUNT(lluv_comando) AS lluvias
                     ORDER BY lluvias DESC
                     
                     SELECT * FROM lluvias
+
+-- USUARIO COMANDO:
+-- 650061
+-- 650064
+-- 650065
+-- USUARIO D5:
+-- 650062
+-- USUADIO ADMINISTRADOR:
+-- 650063
+-- CONTRASEÑA PARA TODOS:
+-- 123456
