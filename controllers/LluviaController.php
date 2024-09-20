@@ -81,17 +81,18 @@ class LluviaController {
     }
 
     public static function mapaAPI()
-    {
-        $sql = "SELECT * FROM lluvias";
+{
+    $sql = "SELECT * FROM lluvias";
 
-        try {
-            $lluvias = Usuario::fetchArray($sql);
-            echo json_encode($lluvias);
-            exit;
-        } catch (Exception $e) {
-            return [];
-        }
+    try {
+        $lluvias = Usuario::fetchArray($sql);
+        echo json_encode($lluvias);
+        exit;
+    } catch (Exception $e) {
+        return [];
     }
+}
+
 }
 
 

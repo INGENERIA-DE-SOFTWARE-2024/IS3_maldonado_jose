@@ -34,12 +34,14 @@ CREATE TABLE permiso (
 
 CREATE TABLE lluvias (
     lluv_id SERIAL PRIMARY KEY,
+    lluv_comando INTEGER,
     lluv_dependencia VARCHAR(150),
     lluv_departamento VARCHAR (150),
     lluv_critica VARCHAR(75),
     lluv_radio VARCHAR(75),
     lluv_fecha DATETIME YEAR TO SECOND,
-    lluv_situacion VARCHAR(50)
+    lluv_situacion VARCHAR(50),
+    FOREIGN KEY (lluv_comando) REFERENCES usuario(usu_id)
 );
 
 INSERT INTO usuario (usu_nombre, usu_codigo, usu_password) VALUES 
@@ -52,7 +54,7 @@ INSERT INTO usuario (usu_nombre, usu_codigo, usu_password) VALUES
 ('ERNESTO CALDERON', 650064, '$2y$10$Nz6/ESQw7b7xW1Q2j.WEM.g5LQ/NSSmHnhZpfolFAH.ltD0GGRKGS');
 INSERT INTO usuario (usu_nombre, usu_codigo, usu_password) VALUES 
 ('RICARDO MAYO', 650065, '$2y$10$Nz6/ESQw7b7xW1Q2j.WEM.g5LQ/NSSmHnhZpfolFAH.ltD0GGRKGS');
-
+SELECT * FROM usuario
 INSERT INTO aplicacion (app_nombre) VALUES ('lluvias');
 
 INSERT INTO rol (rol_nombre, rol_nombre_ct, rol_app) VALUES 
@@ -73,22 +75,45 @@ INSERT INTO permiso (permiso_usuario, permiso_rol) VALUES
 INSERT INTO permiso (permiso_usuario, permiso_rol) VALUES 
 (5, 1);
 
-INSERT INTO lluvias (lluv_dependencia, lluv_departamento, lluv_critica, lluv_radio, lluv_fecha, lluv_situacion)
-VALUES 
-('COMANDO ALFA', 'PETEN', '16.9177, -89.8925', '17.2052, -90.0490', '2024-09-18 10:30:00', 'FINALIZADO');
+CREATE TABLE lluvias (
+    lluv_id SERIAL PRIMARY KEY,
+    lluv_comando INTEGER,
+    lluv_dependencia VARCHAR(150),
+    lluv_departamento VARCHAR (150),
+    lluv_critica VARCHAR(75),
+    lluv_radio VARCHAR(75),
+    lluv_fecha DATETIME YEAR TO SECOND,
+    lluv_situacion VARCHAR(50),
+    FOREIGN KEY (lluv_comando) REFERENCES usuario(usu_id)
+);
 
-INSERT INTO lluvias (lluv_dependencia, lluv_departamento, lluv_critica, lluv_radio, lluv_fecha, lluv_situacion)
+INSERT INTO lluvias (lluv_comando, lluv_dependencia, lluv_departamento, lluv_critica, lluv_radio, lluv_fecha, lluv_situacion)
 VALUES 
-('COMANDO BRAVO', 'ALTA VERAPAZ', '15.4667, -90.3700', '15.6000, -90.2000', '2024-09-19 14:45:00', 'EN PROCESO');
+(1, 'COMANDO ALFA', 'PETEN', '16.9177, -89.8925', '16.9500, -89.8500', '2024-09-18 10:30:00', 'FINALIZADO');
 
-INSERT INTO lluvias (lluv_dependencia, lluv_departamento, lluv_critica, lluv_radio, lluv_fecha, lluv_situacion)
+INSERT INTO lluvias (lluv_comando, lluv_dependencia, lluv_departamento, lluv_critica, lluv_radio, lluv_fecha, lluv_situacion)
 VALUES 
-('COMANDO CHARLIE', 'QUETZALTENANGO', '14.8340, -91.5180', '14.7400, -91.4200', '2024-09-20 09:20:00', 'FINALIZADO');
+(4, 'COMANDO BRAVO', 'ALTA VERAPAZ', '15.4667, -90.3700', '15.4900, -90.3300', '2024-09-19 14:45:00', 'EN PROCESO');
 
-INSERT INTO lluvias (lluv_dependencia, lluv_departamento, lluv_critica, lluv_radio, lluv_fecha, lluv_situacion)
+INSERT INTO lluvias (lluv_comando, lluv_dependencia, lluv_departamento, lluv_critica, lluv_radio, lluv_fecha, lluv_situacion)
 VALUES 
-('COMANDO DELTA', 'CHIMALTENANGO', '14.6542, -90.8166', '14.8000, -90.7000', '2024-09-21 12:10:00', 'EN PROCESO');
+(5, 'COMANDO CHARLIE', 'QUETZALTENANGO', '14.8340, -91.5180', '14.8500, -91.5000', '2024-09-20 09:20:00', 'FINALIZADO');
 
-INSERT INTO lluvias (lluv_dependencia, lluv_departamento, lluv_critica, lluv_radio, lluv_fecha, lluv_situacion)
-VALUES 
-('COMANDO ECHO', 'ESCUINTLA', '14.2950, -90.7860', '14.4500, -90.9000', '2024-09-22 16:30:00', 'FINALIZADO');
+SELECT usu_nombre, lluv_dependencia, lluv_departamento, lluv_critica, lluv_radio, lluv_fecha,
+ lluv_situacion
+FROM lluvias, usuario 
+WHERE lluv_comando = usu_id;
+
+SELECT usu_nombre, COUNT(lluv_comando) AS lluvias
+                    FROM lluvias
+                    INNER JOIN usuario ON usu_id = lluv_comando
+                    GROUP BY usu_nombre
+                    ORDER BY lluvias DESC;
+                    
+                    SELECT usu_nombre, COUNT(lluv_comando) AS lluvias
+                    FROM lluvias
+                    INNER JOIN usuario ON usu_id = lluv_comando
+                    GROUP BY usu_nombre
+                    ORDER BY lluvias DESC
+                    
+                    SELECT * FROM lluvias

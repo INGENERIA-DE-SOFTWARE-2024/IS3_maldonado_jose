@@ -1,6 +1,7 @@
 import { Dropdown } from 'bootstrap';
 import L from 'leaflet';
 
+// Inicialización del mapa
 const map = L.map('map', {
     center: [15.783471, -90.230759],
     zoom: 7,
@@ -26,18 +27,23 @@ const icon2 = L.icon({
     iconSize: [35, 35]
 });
 
+// Función para calcular la distancia entre dos puntos
+const getRadiusFromCoordinates = (latOrigen, lngOrigen, latDestino, lngDestino) => {
+    const distance = map.distance([latOrigen, lngOrigen], [latDestino, lngDestino]);
+    return distance; // Retornar la distancia como radio (en metros)
+};
+
 const Lluvias = async () => {
     try {
-        const url = '/IS3_maldonado_jose/API/lluvias/mapa';
+        const url = '/IS3_maldonado_morales/API/lluvias/mapa';
 
         const config = {
             method: 'GET'
         };
-    
+
         const respuesta = await fetch(url, config);
         const datos = await respuesta.json();
-        // console.log(datos)
-
+        
         datos.forEach(lluvias => {
             // Convertir las coordenadas de origen y destino
             const [latOrigen, lngOrigen] = lluvias.lluv_critica.split(', ').map(Number);
@@ -55,10 +61,21 @@ const Lluvias = async () => {
                 weight: 3,
                 opacity: 0.7
             }).addTo(routeLayer);
+
+            // Calcular el radio basado en la distancia entre el origen y el destino
+            const radius = getRadiusFromCoordinates(latOrigen, lngOrigen, latDestino, lngDestino);
+
+            // Añadir un círculo para representar el radio desde el origen
+            L.circle([latOrigen, lngOrigen], {
+                color: 'red', // Color del borde
+                fillColor: '#f03', // Color del área
+                fillOpacity: 0.3, // Transparencia
+                radius: radius // Radio calculado
+            }).addTo(markerLayer);
         });
     } catch (error) {
-        console.error('Error fetching operaciones:', error);
+        console.error('Error fetching lluvias:', error);
     }
 };
 
-Operaciones();
+Lluvias();
