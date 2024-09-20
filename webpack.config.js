@@ -5,6 +5,11 @@ module.exports = {
   entry: {
     'js/app' : './src/js/app.js',
     'js/inicio' : './src/js/inicio.js',
+    'js/login/login' : './src/js/login/login.js',
+    'js/inicio/index' : './src/js/inicio/index.js',
+    'js/lluvias/index' : './src/js/lluvias/index.js',
+    'js/lluvias/estadistica' : './src/js/lluvias/estadistica.js',
+    'js/lluvias/mapa' : './src/js/lluvias/mapa.js',
   },
   output: {
     filename: '[name].js',

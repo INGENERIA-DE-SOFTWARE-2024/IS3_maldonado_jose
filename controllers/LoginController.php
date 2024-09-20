@@ -75,7 +75,7 @@ class LoginController {
     public static function inicio(Router $router)
     {
         isAuth();
-        hasPermission(['COMANDO', 'EMDN', 'ADMINISTRADOR']);
+        hasPermission(['COMANDO', 'D5', 'ADMINISTRADOR']);
         $router->render('login/inicio', [], 'layouts/menu');
     }
 
