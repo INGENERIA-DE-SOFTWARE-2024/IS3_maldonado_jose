@@ -32,7 +32,7 @@
                     </li>
                 <?php endif; ?>
 
-                <?php if ($_SESSION['user']['rol_nombre_ct'] == "EMDN" || $_SESSION['user']['rol_nombre_ct'] == "ADMINISTRADOR") : ?>
+                <?php if ($_SESSION['user']['rol_nombre_ct'] == "D5" || $_SESSION['user']['rol_nombre_ct'] == "ADMINISTRADOR") : ?>
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-send-check me-2"></i>Información de Lluvias
