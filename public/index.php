@@ -19,7 +19,7 @@ $router->get('/logout', [LoginController::class, 'logout']);
 $router->get('/lluvias', [LluviaController::class,'index']);
 $router->get('/API/lluvias/buscar', [LluviaController::class,'buscarAPI']);
 $router->get('/estadistica', [LluviaController::class,'index2']);
-$router->get('/API/lluvias/estadistica', [LluviaController::class,'estadisticaOperacionesAPI']);
+$router->get('/API/lluvias/estadistica', [LluviaController::class,'estadisticaLluviasAPI']);
 $router->get('/mapa', [LluviaController::class,'index3']);
 $router->get('/API/lluvias/mapa', [LluviaController::class,'mapaAPI']);
 

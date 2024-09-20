@@ -22,20 +22,19 @@ const chartVentas= new Chart(ctx, {
 });
 
 const getEstadisticas = async () => {
-    const url = '/IS3_maldonado_jose/API/operaciones/estadistica'
+    const url = '/IS3_maldonado_jose/API/lluvias/estadistica'
     const config = { method: "GET" }
     const response = await fetch(url, config);
     const data = await response.json()
-    // console.log(data);
 
     if(data){
         if(chartVentas.data.datasets[0]) {
             chartVentas.data.labels = [];
             chartVentas.data.datasets[0].data = [];
             chartVentas.data.datasets[0].backgroundColor = [];
-            data.forEach(lluvias => {
-                chartVentas.data.labels.push(lluvias.usu_nombre);
-                chartVentas.data.datasets[0].data.push(lluvias.lluvias);
+            data.forEach(opciones => {
+                chartVentas.data.labels.push(opciones.usu_nombre);
+                chartVentas.data.datasets[0].data.push(opciones.lluvias);
                 chartVentas.data.datasets[0].backgroundColor.push(generateRandomColor());
             });
         }
