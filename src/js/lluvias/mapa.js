@@ -44,10 +44,10 @@ const Lluvias = async () => {
         const respuesta = await fetch(url, config);
         const datos = await respuesta.json();
         
-        datos.forEach(lluvias => {
+        datos.forEach(lluvia => {
             // Convertir las coordenadas de origen y destino
-            const [latOrigen, lngOrigen] = lluvias.lluv_critica.split(', ').map(Number);
-            const [latDestino, lngDestino] = lluvias.lluv_radio.split(', ').map(Number);
+            const [latOrigen, lngOrigen] = lluvia.lluv_critica.split(', ').map(Number);
+            const [latDestino, lngDestino] = lluvia.lluv_radio.split(', ').map(Number);
 
             // Añadir marcador de origen
             L.marker([latOrigen, lngOrigen], { icon: icon }).addTo(markerLayer);

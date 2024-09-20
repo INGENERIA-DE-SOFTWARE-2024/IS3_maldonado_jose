@@ -10,7 +10,7 @@ class LluviaController {
     public static function index(Router $router)
     {   
         isAuth();
-        hasPermission(['COMANDO', 'D5', 'ADMINSTRADOR']);
+        hasPermission(['COMANDO', 'D5', 'ADMINISTRADOR']);
         $router->render('lluvias/index', [], 'layouts/menu');
     }
     public static function index2(Router $router)
