@@ -34,10 +34,10 @@ class LluviaController {
             $usuarioId = $_SESSION['user']['usu_id']; 
     
     
-            if ($usuarioRol === 'ADMINSTRADOR') {
-                $sql = "SELECT usu_nombre, lluv_dependencia, lluv_departamento, lluv_critica, lluv_radio, lluv_fecha,
+            if ($usuarioRol === 'ADMINISTRADOR') {
+                $sql = " SELECT usu_nombre, lluv_dependencia, lluv_departamento, lluv_critica, lluv_radio, lluv_fecha,
                             lluv_situacion
-                            FROM lluvias, usuario 
+                            FROM usuario, lluvias 
                             WHERE lluv_comando = usu_id;";
             } else {
                 $sql = "SELECT usu_nombre, lluv_dependencia, lluv_fecha, lluv_situacion 

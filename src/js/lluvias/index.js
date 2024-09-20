@@ -42,6 +42,10 @@ const datatable = new DataTable('#lluvias', {
             data: 'lluv_dependencia'
         },
         {
+            title: 'Departamento',
+            data: 'lluv_departamento'
+        },
+        {
             title: 'Fecha',
             data: 'lluv_fecha'
         },

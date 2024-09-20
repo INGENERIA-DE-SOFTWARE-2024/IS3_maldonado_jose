@@ -4,7 +4,7 @@ import L from 'leaflet';
 // Inicialización del mapa
 const map = L.map('map', {
     center: [15.783471, -90.230759],
-    zoom: 7,
+    zoom: 10,
     layers: []
 });
 
